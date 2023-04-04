@@ -95,7 +95,9 @@ function clearCart() {
       clearLocalStorage();
 
 }
-
+function clearLocalStorage() {
+      localStorage.clear();
+}
 function getFromLocalStorage() {
       let coursesLS = getCoursesFromStorage();
 
