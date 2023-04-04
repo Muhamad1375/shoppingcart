@@ -80,11 +80,26 @@ function getCoursesFromStorage() {
       return courses;
 }
 function removeCourse(e) {
+      let course, courseID;
       if (e.target.classList.contains('remove')){
             e.target.parentElement.parentElement.remove();
+            course = e.target.parentElement.parentElement;
+            courseID = course.querySelector('a').getAttribute('data-id');
       }
-}
+      console.log(courseID);
+      removeCourseLocalStorage(courseID);
 
+}
+function removeCourseLocalStorage(id) {
+      let coursesLS = getCoursesFromStorage();
+
+      coursesLS.forEach(function(courseLS, index) {
+            if (courseLS.id === id) {
+                  coursesLS.splice(index, 1);
+            }
+      });
+      localStorage.setItem('courses', JSON.stringify(coursesLS));
+}
 function clearCart() {
       // shoppingCartContent.innerHTML = '';
 
